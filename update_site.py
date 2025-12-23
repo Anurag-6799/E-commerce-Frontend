@@ -44,7 +44,7 @@ def generate_card(product):
     return f'''
                                     <div class="col-12 col-md-6 col-lg-3">
                                         <div class="card w-100 overflow-hidden" style="border: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                                            <img src="{product['img']}"  alt="{product['title']}" style="height: 300px; object-fit: cover;">
+                                            <img src="{product['img']}"  alt="{product['title']}" style="height: 300px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300?text=Product+Image'">
                                             <div class="card-body card-body-styling overflow-y-auto">
                                                 <h3 class="item-price" style="color: #333; font-weight: bold;">{product['price']}</h3>
                                                 <h5 class="card-title">{product['title']}</h5>
@@ -101,15 +101,18 @@ def update_index():
     '''
     
     # Inject Hero Carousel - Replace static part or inject
-    # Try replacing the static image div if it exists, otherwise just after header
+    # Try replacing the static image div if it exists
     pattern_static = r'(<div class="home-page-part1">.*?</div>)'
-    if re.search(pattern_static, content, flags=re.DOTALL):
-         content = re.sub(pattern_static, hero_carousel, content, flags=re.DOTALL)
-    else:
-         # Fallback: inject after header if static part already removed/missing
-         pattern_header = r'(<div class="header" id="header"></div>)'
-         # If header exists and hero not present, add it.
-         if "id=\"heroCarousel\"" not in content:
+    
+    # Check if we already have a carousel to avoid duplication
+    if 'id="heroCarousel"' not in content:
+        if re.search(pattern_static, content, flags=re.DOTALL):
+             # Careful with greedy matching if nested divs exist; simplistic approach for now
+             # We rely on the specific class name structure
+             content = re.sub(pattern_static, hero_carousel, content, flags=re.DOTALL)
+        else:
+             # Fallback: inject after header if static part already removed
+             pattern_header = r'(<div class="header" id="header"></div>)'
              content = re.sub(pattern_header, f'\\1\n{hero_carousel}', content, flags=re.DOTALL)
 
     def create_slides(products_list, items_per_slide):
