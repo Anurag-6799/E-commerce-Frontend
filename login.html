@@ -16,45 +16,27 @@
 <body>
     <div class="header" id="header"></div>
 
-
-    <form action="" class="myform">
-        <div class="frm-content">
-            <div class="row form flex-column align-items-center justify-content-center">
-
-
-                <div class="col-12 col-md-8 col-lg-6 d-flex flex-column justify-content-around">
-                    <h2 class="text-center login-title">Login</h2>
-                    <h4 class="alert-msg text-center"></h4>
-                    <label for="email" class="email-title">
-                        E-mail 
-                    </label>
-                    <input type="email" name="email" id="email" placeholder="Enter your Email id..">
-                </div>
-
-
-
-                <div class="col-12 col-md-8 col-lg-6 d-flex flex-column justify-content-around">
-                    <label for="Password" class="password-title">
-                        Password 
-                    </label>
-                    <input type="password" name="password" id="password" placeholder="Enter your Password">
-                </div>
-
-                <div class="col-12 col-md-8 col-lg-6 d-flex flex-column justify-content-around">
-                    <button type="button" class="btn btn-primary login-btn" onclick="checker()">Login</button>
-                </div>
-
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+        <div class="card border-0 shadow-lg p-4" style="width: 100%; max-width: 400px; border-radius: 15px;">
+            <div class="card-body">
+                <h3 class="text-center mb-4 fw-bold">Welcome Back</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="••••••••">
+                    </div>
+                    <button type="button" class="btn btn-dark w-100 py-2 mb-3" onclick="checker()">Login</button>
+                     <p class="text-center small text-muted">Don't have an account? <a href="#" class="text-decoration-none">Sign up</a></p>
+                </form>
             </div>
-
-            <!-- <div class="col-12 col-md-8 col-lg-6 d-flex flex-column justify-content-around">
-                <button type="button" class="btn btn-primary login-btn">Login</button>
-            </div> -->
-
         </div>
-    </form>
-
-
-    <div class="footer" id="footer"></div>
+    </div>
+    
+<div class="footer" id="footer"></div>
 
     <script src="./scriptjs.js"></script>
 
